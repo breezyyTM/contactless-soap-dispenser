@@ -199,7 +199,7 @@ while True:
 
             i += 1
             print("Uploading sample number", i)
-            resp = requests.get("https://api.thingspeak.com/update?api_key=OI1N9PBFHJZOL8R8&field1=%s" %(liquidDispensedTimes))
+            resp = requests.get("https://api.thingspeak.com/update?api_key=<<WRITE_API_KEY_HERE>>&field1=%s" %(liquidDispensedTimes))
 
             liquidDispensedTimes = 0    # Reset no. of times liquid has been dispensed, after the 24-hour set interval and uploading the data to cloud
 
@@ -216,7 +216,7 @@ while True:
 
 
         elif soapAmount <= 0:       # Empty / 0ml left in bottle
-            resp = requests.post("https://api.thingspeak.com/apps/thingtweet/1/statuses/update", json = {"api_key":"KJB8LLA1FEVNWRUE", "status":"Your bottle of liquid is empty! (0ml)"})
+            resp = requests.post("https://api.thingspeak.com/apps/thingtweet/1/statuses/update", json = {"api_key":"<<WRITE_API_KEY_HERE>>", "status":"Your bottle of liquid is empty! (0ml)"})
             print("LED turns on for 15 seconds, when notifying user through ThingTweet.")
             print("Program is shutting down, because bottle is empty. ")
             GPIO.output(24, 1)   # LED turns on
@@ -229,7 +229,7 @@ while True:
 
 
         elif (informed25 == 0) and (soapAmount <= originalAmt / 4):      # 25% or less amount of liquid left in bottle
-            resp = requests.post("https://api.thingspeak.com/apps/thingtweet/1/statuses/update", json = {"api_key":"KJB8LLA1FEVNWRUE", "status":"The remaining amount of liquid in the bottle is at 25% or below! "})
+            resp = requests.post("https://api.thingspeak.com/apps/thingtweet/1/statuses/update", json = {"api_key":"<<WRITE_API_KEY_HERE>>", "status":"The remaining amount of liquid in the bottle is at 25% or below! "})
             GPIO.output(24, 1)   # LED turns on
             print("LED turns on for 20 seconds, when notifying user through ThingTweet.")
             time.sleep(20)
@@ -240,7 +240,7 @@ while True:
 
 
         elif (informed50 == 0) and (soapAmount <= originalAmt / 2):      # 50% or less amount of liquid left in bottle
-            resp = requests.post("https://api.thingspeak.com/apps/thingtweet/1/statuses/update", json = {"api_key":"KJB8LLA1FEVNWRUE", "status":"The remaining amount of liquid in the bottle is at 50% or below! "})
+            resp = requests.post("https://api.thingspeak.com/apps/thingtweet/1/statuses/update", json = {"api_key":"<<WRITE_API_KEY_HERE>>", "status":"The remaining amount of liquid in the bottle is at 50% or below! "})
             print("LED turns on for 20 seconds, when notifying user through ThingTweet.")
             time.sleep(20)
             GPIO.output(24, 0)   # LED turns off
